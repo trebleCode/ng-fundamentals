@@ -5,10 +5,9 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     // tslint:disable-next-line:component-selector
-    selector: 'events-list',
     template: `
     <div>
-        <h1>Upcoming Angular Events</h1>
+        <h1>All the Going's On</h1>
         <hr/>
         <div class="row">
             <div *ngFor="let event of events" class="col-md-5">
