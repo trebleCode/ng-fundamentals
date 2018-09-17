@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { OuterSubscriber } from 'rxjs/internal/OuterSubscriber';
+import { IEvent } from './shared/index';
 
 @Component({
     // tslint:disable-next-line:component-selector
@@ -30,7 +31,7 @@ import { OuterSubscriber } from 'rxjs/internal/OuterSubscriber';
     `]
 })
 export class EventThumbnailComponent {
-    @Input() event: any;
+    @Input() event: IEvent;
 
     getStartTimeStyle(): any {
         if (this.event && this.event.time === '8:00 am') {
