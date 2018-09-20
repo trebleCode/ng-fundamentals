@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './../events/user/auth.service';
+import { ISession } from './../events/shared/event.model';
+import { EventService } from './../events/shared/event.service';
 
 @Component({
     // tslint:disable-next-line:component-selector
@@ -15,7 +17,17 @@ import { AuthService } from './../events/user/auth.service';
     ]
 })
 export class NavBarComponent {
-    constructor(public auth: AuthService) {
+    searchTerm = '';
+    foundSessions: ISession[];
 
+    constructor(public auth: AuthService, private eventService: EventService) {
+    }
+
+    searchSessions(searchTerm) {
+        this.eventService.searchSessions(searchTerm).subscribe
+        (sessions => {
+            this.foundSessions = sessions;
+            console.log(this.foundSessions);
+        });
     }
 }
