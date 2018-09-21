@@ -1,7 +1,7 @@
 import { IEvent, ISession } from './../shared/event.model';
 import { EventService } from './../shared/event.service';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
 templateUrl: './event-details.component.html',
@@ -20,10 +20,6 @@ export class EventDetailsComponent {
     constructor(private eventService: EventService, private route: ActivatedRoute) {
     }
 
-    ngOnInit() {
-        this.event = this.eventService.getEvent(+this.route.snapshot.params['id']);
-    }
-
     addSession() {
         this.addMode = true;
     }
@@ -38,5 +34,13 @@ export class EventDetailsComponent {
 
     cancelAddSession() {
         this.addMode = false;
+    }
+
+    // tslint:disable-next-line:use-life-cycle-interface
+    ngOnInit() {
+        this.route.params.forEach((params: Params) => {
+            this.event = this.eventService.getEvent(+params['id']);
+            this.addMode = false;
+        });
     }
 }

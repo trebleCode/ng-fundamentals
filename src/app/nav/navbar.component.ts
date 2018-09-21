@@ -17,7 +17,8 @@ import { EventService } from './../events/shared/event.service';
     ]
 })
 export class NavBarComponent {
-    searchTerm = '';
+    // tslint:disable-next-line:no-inferrable-types
+    searchTerm: string = '';
     foundSessions: ISession[];
 
     constructor(public auth: AuthService, private eventService: EventService) {
@@ -28,6 +29,8 @@ export class NavBarComponent {
         this.eventService.searchSessions(searchTerm).subscribe
         (sessions => {
             this.foundSessions = sessions;
+            console.log(this.foundSessions);
+            console.log(`searchTerm: ${searchTerm}`);
         });
     }
 }
